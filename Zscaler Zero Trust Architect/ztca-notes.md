@@ -39,7 +39,7 @@ Hub and spoke networks.
 
 ### Architectural advantages to ZTA
 
-![](/home/andreas/Bilete/Screenshots/Screenshot from 2023-08-24 21-37-09.png)
+![](/legacy-architecture-vs-zta.png)
 
 ### Connecting to ZTE
 
