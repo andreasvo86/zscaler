@@ -1,6 +1,6 @@
 # Zscaler notata
 
-[ZTCA]: /ZscalerZeroTrustArchitect/ztca-notes.md	"ZTCA-Notes"
+[ZTCA]: /Zscaler Zero Trust Architect/ztca-notes.md	"ZTCA-Notes"
 
 
 
