@@ -170,7 +170,7 @@ ZTA består av 3 seksjoner, og 7 element.
 * **Enforce**,  Policy, per session decisions and enforcement. 
   * Enforce policy. 
 
-![](/home/andreas/Bilete/Screenshots/Screenshot from 2023-08-27 18-54-35.png)
+![](/ZTA-Sections-and-steps.png)
 
 
 
@@ -179,19 +179,4 @@ ZTA består av 3 seksjoner, og 7 element.
 #### Element1 - Who is connecting
 
 
-
-
-
-
-
-
-
-
-
-![](/home/andreas/Bilete/Screenshots/Screenshot from 2023-08-27 22-29-32.png)
-
-
-
-
-
-![](/home/andreas/Bilete/Screenshots/Screenshot from 2023-08-27 23-10-05.png)
+![](/ZTA-Flow..png)
