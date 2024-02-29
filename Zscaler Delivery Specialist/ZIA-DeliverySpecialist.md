@@ -1,5 +1,9 @@
 #  Deployment methodology and delivery
 
+[TOC]
+
+
+
 ## Delivery Methodology 
 
 Methodology = Blueprint.  Inneheld repetable processes, BestPractice guidelines. 
@@ -360,17 +364,19 @@ SCIM sync tar tid å synce.  Kan lede til issues med user-sync i starten.
 
 #### Forwarding Reference chart 
 
-![](/home/andreas/Dokument/Sertifisering/zscaler/traffic-forwarding-Reference Comparison Chart.jpg)
+![Forwarding Reference chart ](./assets/traffic-forwarding-Reference Comparison Chart.jpg)
 
 
 
 ### Traffic forwarding - Understand the design 
 
 * Må forstå korleis trafikk går til internet i dag, og korleis det vil gå post-deployment. 
-* Hugs på: 
-  * Client connector er førstevalg.   Client-Connector for klient-trafikk. 
-  * GRE for Servers / IoT.  1Gb limit,  load-balance dersom høgre bandbredde. 
-  * IPSEC dersom kryptering er krevd, kun 250mbps. 
+
+> [!IMPORTANT]
+>
+> * Client connector er førstevalg.   Client-Connector for klient-trafikk. 
+> * GRE for Servers / IoT.  1Gb limit,  load-balance dersom høgre bandbredde. 
+> * IPSEC dersom kryptering er krevd, kun 250mbps. 
 
 
 
@@ -398,8 +404,10 @@ Policy creation og maintenance is a always evolving process.
 * Sandbox 
 * Firewall 
 
-Zscaler recomended approach for each type: 
+Zscaler recomended approach for each type. 
 
+> [!TIP]
+>
 > *ZCDS module* - Har best practice, teori og customer cases + deeper info for kvar policy type. 
 
 
@@ -673,8 +681,4 @@ Differences in usage based on deployment type:
 * Recomendation: 
   Ensure to select the cloud applications in your SSL Inspection rule.
 * Application Tenancy Restriction is limited to only specific applications. 
-
-
-
-
 
