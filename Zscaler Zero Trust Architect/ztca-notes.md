@@ -37,9 +37,9 @@ Hub and spoke networks.
 
 
 
-### Architectural advantages to ZTA
+### Architectural advantages to ZTA vs Legacy Architecture
 
-![](/legacy-architecture-vs-zta.png)
+![egacy-architecture-vs-zta](assets/legacy-architecture-vs-zta.png)
 
 ### Connecting to ZTE
 
@@ -170,13 +170,11 @@ ZTA består av 3 seksjoner, og 7 element.
 * **Enforce**,  Policy, per session decisions and enforcement. 
   * Enforce policy. 
 
-![](/ZTA-Sections-and-steps.png)
-
-
+<img src="assets/ZTA-Sections-and-steps.png" alt="ZTA Sections and Steps" style="zoom:150%;" />
 
 ### Verify Deep Dive. 
 
 #### Element1 - Who is connecting
 
 
-![](/ZTA-Flow..png)
+![ZTA Flow](assets/ZTA-Flow.png)

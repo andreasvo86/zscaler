@@ -1,4 +1,4 @@
-# # ZTE Overview
+# ZTE Overview
 
 Zero Trust Exchange. 
 Provides three key solutions to provide fast, reliable, secure access to internet, SaaS and private Apps. 
@@ -6,8 +6,6 @@ Provides three key solutions to provide fast, reliable, secure access to interne
 * Secure internet and SaaS Access
 * Secure Private Apps Access 
 * Digital Experience Monitoring 
-
-
 
 ZTE Overview and platform offerings from Zscaler. 
 
@@ -24,8 +22,8 @@ ZTE Overview and platform offerings from Zscaler.
   * Secure Internet, SaaS, private app access. 
   * Priviliged access to OT. 
 
-ZTE Functional Diagram: 
-![](/home/andreas/Dokument/Sertifisering/zscaler/ZTE - Functional Diagram.png)
+
+![ZTE Functional Diagram](assets/ZTE-Functional-Diagram.png)
 
 
 
