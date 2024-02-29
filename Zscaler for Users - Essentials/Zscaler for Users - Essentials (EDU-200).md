@@ -1,6 +1,14 @@
-# ZTE Overview
+# Zscaler for Users - Essentials (EDU-200)
+Mål for cert-path:  
 
-Zero Trust Exchange. 
+* Gain an overview of Zscaler's Zero Trust Exchange and the key use cases for adopting the Zscaler for Users platform of solutions
+* Configure the basic functions of ZIA, ZPA, and ZDX in order to get started utilizing the products
+* Explore the services and their capabilities offered by the Zero Trust Exchange including connectivity, platform, access control, cyber security, data protection, and digital experience.
+* Identify Zscaler's support ecosystem and how to troubleshoot common issues
+
+[TOC]
+
+# Module 1 - ZTE Overview
 Provides three key solutions to provide fast, reliable, secure access to internet, SaaS and private Apps. 
 
 * Secure internet and SaaS Access
@@ -10,26 +18,25 @@ Provides three key solutions to provide fast, reliable, secure access to interne
 ZTE Overview and platform offerings from Zscaler. 
 
 * Zscaler for users 
-  * ZIA
-  * ZPA
+  * ZIA - Zscaler Internet Access
+  * ZPA - Zscaler Private Access
   * ZDX (Digital Experience)
 * Zscaler for workloads 
   * Out of scope for denne cert-en. 
-  * Gjelder cloud,  AWS, GCP, Azure. 
-  * Secure Workload-to-workload 
+  * Brukast i cloud-miljø.  AWS, GCP, Azure. 
+  * Secures Workload-to-workload trafikk.  Multic-cloud
   * config and exposure scanning. 
 * Zscaler for IoT
   * Secure Internet, SaaS, private app access. 
   * Priviliged access to OT. 
 
-
-![ZTE Functional Diagram](assets/ZTE-Functional-Diagram.png)
+<img src="assets/ZTE-Functional-Diagram.png" alt="ZTE Functional Diagram" style="zoom:150%;" />
 
 
 
 -------------------------------------------------------------------
 
-# Quick Start Guide
+# Module 2 - Quick Start Guide
 
 * configure and deploy the basic functions of ZIA, ZPA, and ZDX
 * View the reports and logs provided in the ZIA, ZPA, and ZDX Administrator portals 
@@ -38,14 +45,14 @@ Gørkjedelige videoar.  Useless.
 
 
 
-# Identity Services
+# Module 3 - Identity Services
 
-### Intro & Learning objective 
+## Intro & Learning objective 
 
 * **Recognize**  how auth mechanism work and how they are integrated with Zscaler. 
 * **Discover** how to config Zscaler Identity Integration services 
 
-### Connecting to a Idp 
+## Connecting to a Idp (idp)
 
 IdP = Identity provider. 
 
@@ -53,8 +60,8 @@ Any SAML 2.0 provider (okta, azure, ADFS, osv )
 
 Støtter SAML og SCIM.  
 
-### Understanding SAML & SCIM
-#### SAML Auth
+## Understanding SAML & SCIM
+### SAML Auth
 
 SAML = Security Assertion Markup Language
 
@@ -83,7 +90,7 @@ SAML = Security Assertion Markup Language
     * SP validerer signaturen og bruker alle attributes den har fått. 
       (Consumes all the attributes)
 
-#### SCIM Auth 
+### SCIM Auth 
 
 * SCIM = System for CrossDomain Identity Management. 
 * Used for provisoning and user & Group Mgmt. 
@@ -108,28 +115,35 @@ SAML = Security Assertion Markup Language
     * users are deleted from source directory. 
     * user attributes are changed in the source direcotry. 
 
-**Policy consideration when determining SCIM or SAML**
+> [!IMPORTANT]
+>
+> **Policy consideration when determining SCIM or SAML**
+>
+> * SAML attributes
+>   * Static 
+>   * Only applied on authentication 
+>   * only changed on re-auth 
+>   * can include device and authentication attributes. 
+> * SCIM Attributes 
+>   * Attributes are dynamic (can change in real-time)
+>   * user & Group specific 
+>   * will be updated after change in source dir. 
+>   * Frequency is IdP controlled. 
 
-* SAML attributes
-  * Static 
-  * Only applied on authentication 
-  * only changed on re-auth 
-  * can include device and authentication attributes. 
-* SCIM Attributes 
-  * Attributes are dynamic (can change in real-time)
-  * user & Group specific 
-  * will be updated after change in source dir. 
-  * Frequency is IdP controlled. 
 
-#### Config guidane 
 
-Zscaler må ha IdP public cert i PEM-format. 
+### Config guidane 
+
+> [!IMPORTANT]
+> Zscaler må ha IdP public cert i PEM-format. 
+> 
 
 * SAML Auto provisioning. 
   * Poplulerer Zscaled hosted DB med users automatisk når dei autentiserer med IdP
-  * 
 
-# Basic Connectivity 
+
+
+# Module 4 - Basic Connectivity 
 
 ## Learning objective 
 
@@ -261,12 +275,81 @@ App Profile PAC er for Client Connector.  Bestemmer kvar client connector skal r
 
 
 
-
-
 ### App Connectors 
 
 LES MEIR PÅ DENNE! 
-https://partneracademy.zscaler.com/path/zscaler-for-users-essentials-edu-200/basic-connectivity/1556533/scorm/28ls3q0wqi7qq
+
+![App Connectors logical location](assets/app-connector-location.png)
+
+* Deploy i DC og for IaaS
+* Alltid deploy i par (2stk) for redundans. 
+  * Forskjellige DC = Forskjellige connector group (forskjellig par). 
+    * Gjer det same for forskjellige IaaS,  vpc eller regioner. 
+  * 1 connector group = 2stk connectors. 
+* Pass på att connector har fungerande ruting til internet og til ønska app. 
+* Connector har minimum VM requirements, pass på å sjekke det i zscaler doc. 
+* Connector må kunne koble til applications for health-checks. 
+  * tcp check - open port requirement
+  * udp check - Trenger ICMP open, eller inferred from tcp health check 
+* source IP for requests mot app vil være AppConnectors sin IP. 
+  * Connector IP må være registrert i Sites & Services for AD. 
+  * AD bruker source-IP for policyer. 
+
+![appconnector Deployment](assets/appconnector-deployment.png)
+
+#### Deploy app connectors - Provisioning keys and certs 
+
+* Create a provisioning key for kvar connector group (pair)
+* prov-key er signed by intermediate CA
+  * intermediate CA signed by root CA
+* Clients  er enrolled mot same intermediate CA. 
+* Revoking/deleting intermediates breaks trust.  
+  * Will invalidate provisioning keys. 
+* Behandle keys som credentials, unngå clear-text sharing. 
+  * Bruk API for å generere å hente. 
+  * last ned frå UI,  upload til connectors via SSH / SCP
+
+For å deploye App Connector "Add App Connector" og lag ein provisioning key. 
+
+* deploy app connector. 
+* Konfigurer *server group*, **server groups** knytter Connector til Applikasjoner. 
+
+**Dynamic Server Discovery** er på som default.  Ikkje anbefalt å fjerne. 
+
+* Gjer automatisk DNS-oppslag.  
+* Lager *Syntethic server associations* som annonserer applikasjoner.... ???? 
+
+
+
+#### Application, application segment og Segment Group
+
+Ein **Application** er: 
+
+* FQDN
+* Wildcard domain 
+* IP-adresse med definerte portar eller port-range.  (Unngå if possible)
+
+**Application Segment** 
+
+* Gruppe  av applikasjoner. 
+  * Baser på access type eller bruker privilegier. 
+* Gruppe-elementer som alle krevs for att ein app skal funke.  Multi-server apps f.eks. 
+
+**Segment Group**
+
+* Gruppe av liknande applikasjoner som du vil ha same policy på. 
+  * Same type brukar skal ha tilgang til f.eks Regnskap. 
+* Segment groups blir assosiert med Server-Groups. Som igjen er knytt mot App-Connector. 
+
+![Applications APP-Segments og Segment Groups - Ilustrert](assets/app-appsegment-segmentgroup.png)
+
+![Server-Groups](assets/server-groups.png)
+
+
+
+![App Connector Trafikkflyt](assets/appconnector-trafikkflyt.png)
+
+
 
 ### Browser access & Priviliged Remote Access 
 
