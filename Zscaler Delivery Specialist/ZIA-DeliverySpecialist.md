@@ -364,7 +364,7 @@ SCIM sync tar tid å synce.  Kan lede til issues med user-sync i starten.
 
 #### Forwarding Reference chart 
 
-![Forwarding Reference chart ](./assets/traffic-forwarding-Reference Comparison Chart.jpg)
+![Forwarding Reference chart ](assets/traffic-forwarding-Reference Comparison Chart.jpg)
 
 
 
