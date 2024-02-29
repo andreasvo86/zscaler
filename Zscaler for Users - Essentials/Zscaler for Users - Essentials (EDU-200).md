@@ -277,8 +277,6 @@ App Profile PAC er for Client Connector.  Bestemmer kvar client connector skal r
 
 ### App Connectors 
 
-LES MEIR PÅ DENNE! 
-
 ![App Connectors logical location](assets/app-connector-location.png)
 
 * Deploy i DC og for IaaS
