@@ -1,5 +1,7 @@
 # ZTCA - Notes
 
+[TOC]
+
 
 
 ## Overview of zero trust
